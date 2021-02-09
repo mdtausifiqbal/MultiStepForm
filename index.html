@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js"></script>
+  <title>FormProgress</title>
+  <style>
+      body{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      .container{
+          width: 100%;
+          height: 100vh;
+
+      }
+      .container div.content{
+          width: 100%;
+          display:flex;
+          flex-direction: column;
+          padding:10px;
+      }
+      .title{
+          text-align: center;
+          font-size: 20px;
+          text-transform: uppercase;
+          margin: 10px auto;
+      }
+      .btn-group{
+          width:100%;
+      }
+      .btn-group .btn{
+          flex-grow:1;
+      }
+      .forms{
+          width:100%;
+          flex-grow: 1;
+          margin: 20px 0px;
+          padding:10px;
+          border-radius: 10px;
+          box-shadow:0px 2px 5px rgba(0,0,0,0.5);
+      }
+  </style>
+</head>
+<body>
+	<div class="container">
+	    <div class="content">
+	        <div class="forms">
+	            <h1 class="title">Form Progress</h1>
+	            <div class="w-100 px-3">
+	                <div class="form-progress" id="indicator">
+	                <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="1" aria-valuemin="1" aria-valuemax="1"></div>
+                    </div>
+                    <div class="progress-info">
+                        <div class="progress-text bg-primary">1</div>
+                        <div class="progress-text bg-light">2</div>
+                        <div class="progress-text bg-light">3</div>
+                    </div>
+	            </div>
+	            </div>
+	            <fieldset class="py-3">
+	                <form action="" class="form">
+	                    <div class="form-group">
+	                        <label for="username">Username</label>
+	                        <input type="text" class="form-control" name="username" id="username">
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="password">Password</label>
+	                        <input type="password" class="form-control" id="password">
+	                    </div>
+	                </form>
+	                <div class="btn-group">
+	                    <button class="btn btn-outline-primary" id="prev">Previous</button>
+	                    <button class="btn btn-outline-primary" id="next">Next</button>
+	                </div>
+	            </fieldset>
+	        </div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var progress = FormProgress($("#indicator"),3,1);
+            progress.setSize("30px");
+            $("#prev").click(function(){
+                progress.back();
+            });
+            $("#next").click(function(){
+                progress.next();
+            });
+        });
+    </script>
+</body>
+</html>
