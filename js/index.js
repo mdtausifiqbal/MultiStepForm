@@ -58,7 +58,25 @@ function FormProgress(element, total, current){
             for(let i=1; i<=this.currentProgress; i++){
                 this.progress_info.find(":nth-child("+i+")").attr("class","progress-text bg-primary text-white");
             }
-        
+            
+            //set the display of fieldset to none and block
+            $('.forms fieldset').hide();
+            $('.forms fieldset:nth-child('+this.currentProgress+')').show();
+
+            //set the button properties
+            if(this.currentProgress == 1){
+                $('button.prev').attr('disabled','true');
+            }else{
+                $('button.prev').removeAttr('disabled','false');
+            }
+            if(this.currentProgress == this.totalProgress){
+                $('button.next').hide();
+                $('button.submit').show();
+            }else{
+                $('button.next').show();
+                $('button.submit').hide();
+            }
+
         },
         setSize : function(value){
             this.size = value;
