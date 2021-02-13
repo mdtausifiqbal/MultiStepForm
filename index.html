@@ -92,19 +92,16 @@
                     <h1 class="form-title">Contact Details</h1>
                     <div class="form-group">
                         <label for="tel">Mobile No.</label>
-                        <input type="phone" class="form-control" id="mobile" pattern='^\d{10}$' name='phone'></input>
+                        <input type="phone" class="form-control" id="mobile" pattern='^\d{10}$' name='phone' required>
                     </div>
                     <div class="form-group">
                         <label for="altmobile">Alternate Mobile No.</label>
                         <input type="tel" class="form-control" id="altmobile" pattern='^\d{10}$'
-                            name='altphone'></input>
+                            name='altphone'>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Id</label>
-                        <input type="email" name="email" id="email" class="form-control">
-                        <div class="invalid-feedback">
-                            Please enter valid email address.
-                        </div>
+                        <input type="email" name="email" id="email" class="form-control" required>
                     </div>
                 </fieldset>
                 <fieldset>
@@ -176,12 +173,17 @@
                     let temp_valid = $(this).valid();
                     if(!temp_valid){
                         valid = temp_valid;
-                        $(this).attr('class',$(this).attr('class')+" was-validated");
                     }
                 });
                 if(valid){
+                    if($("form.forms").hasClass("was-validated")){
+                        $("form.forms").toggleClass("was-validated");
+                    }
                     progress.next();
                 }else{
+                    if(!($("form.forms").hasClass("was-validated"))){
+                        $("form.forms").toggleClass("was-validated");
+                    }
                     // $('form.forms').attr('class',$('form.forms').attr('class')+' was-validated');
                 }
             });
